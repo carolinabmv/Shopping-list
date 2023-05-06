@@ -38,16 +38,9 @@
 //     this.classList.toggle('blue');
 //   });
 // });
-
 const enterBtn = document.querySelector('.add-btn');
 const enterInputEl = document.querySelector('.enter-input');
 const ul = document.querySelector('ul');
-const list = document.querySelectorAll('.check');
-const closeBtn = document.querySelector('.close-btn');
-
-list.forEach(function (element) {
-  element.addEventListener('click', strikeOut);
-});
 
 function strikeOut() {
   this.parentElement.classList.toggle('done');
@@ -56,6 +49,22 @@ function deleteItem() {
   const li = this.parentElement;
   li.parentNode.removeChild(li);
 }
+function strike() {
+  let itemsList = document.querySelectorAll('.check');
+  itemsList.forEach(function (element) {
+    element.addEventListener('click', strikeOut);
+  });
+}
+function remove() {
+  let closeBtns = document.querySelectorAll('.close-btn');
+  closeBtns.forEach(function (btn) {
+    btn.addEventListener('click', deleteItem);
+  });
+}
+
+strike();
+remove();
+
 // addEvent(list);
 
 function addNewItem() {
@@ -82,18 +91,12 @@ function addNewItem() {
 
     enterInputEl.value = '';
   }
-  const newList = document.querySelectorAll('.check');
-  const closeBtns = document.querySelectorAll('.close-btn');
-  newList.forEach((element) => {
-    element.addEventListener('click', strikeOut);
-  });
-  closeBtns.forEach((closebtn) => {
-    closebtn.addEventListener('click', deleteItem);
-  });
+
+  strike();
+  remove();
 }
 
 enterBtn.addEventListener('click', addNewItem);
-closeBtn.addEventListener('click', deleteItem);
 
 enterInputEl.addEventListener('keypress', (event) => {
   if (event.key === 'Enter') addNewItem();
