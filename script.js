@@ -51,8 +51,8 @@ function deleteItem() {
 }
 function strike() {
   let itemsList = document.querySelectorAll('.check');
-  itemsList.forEach(function (element) {
-    element.addEventListener('click', strikeOut);
+  itemsList.forEach(function (item) {
+    item.addEventListener('click', strikeOut);
   });
 }
 function remove() {
