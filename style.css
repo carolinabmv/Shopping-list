@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+.body {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 700px;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+  border-radius: 40px;
+  border: 1.5px solid rgb(51, 51, 51, 0.4);
+  box-shadow: 4px 4px 12px rgb(51, 51, 51, 0.05);
+}
+.enter-item {
+  align-self: center;
+  margin-bottom: 40px;
+  width: 100%;
+}
+h1 {
+  font-family: sans-serif;
+  font-size: 28px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.enter-input {
+  display: block;
+  margin: auto;
+  font-size: 16px;
+  margin-bottom: 10px;
+  padding: 6px;
+  outline: none;
+  border-radius: 10px;
+  border: 1px solid rgb(51, 51, 51, 0.3);
+  width: 80%;
+}
+.add-btn {
+  display: block;
+  cursor: pointer;
+  margin: auto;
+  text-align: center;
+  padding: 9px 40px;
+  border-radius: 40px;
+  border: none;
+  background-color: #e86a33;
+  font-size: 16px;
+  color: #fff;
+  font-weight: 500;
+}
+
+.close-btn:link,
+.close-btn:visited {
+  color: rgb(252, 0, 0, 0.3);
+}
+.close-btn:hover,
+.close-btn:active {
+  color: rgb(252, 0, 0);
+}
+ul {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 18px;
+}
+li {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  gap: 15px;
+}
+.fa-xs {
+  vertical-align: 0 !important;
+}
