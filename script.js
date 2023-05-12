@@ -18,12 +18,12 @@ function newList() {
   closeBtns = document.querySelectorAll('.close-btn');
 
   itemsList.forEach((item) =>
-    item.addEventListener('click', () => {
+    item.addEventListener('click', function () {
       strikeOut(this);
     })
   );
   closeBtns.forEach((btn) =>
-    btn.addEventListener('click', () => {
+    btn.addEventListener('click', function () {
       deleteItem(this);
     })
   );
