@@ -1,71 +1,33 @@
-// // inputsArr.forEach((input) => input.addEventListener('click', () => input.parentElement.classList.toggle('done')));
-
-// function addItems() {
-//   let item = document.querySelector('.enter-item').value;
-//   item = item.replace(item[0], item[0].toUpperCase());
-
-//   if (item) {
-//     const ul = document.querySelector('ul');
-//     const li = document.createElement('li');
-//     li.appendChild(document.createTextNode(item));
-//     ul.appendChild(li);
-
-//     const list = document.querySelectorAll('li');
-
-//     list.forEach(function (item) {
-//       item.addEventListener('click', function () {
-//         item.classList.toggle('done');
-//       });
-//     });
-//   }
-
-//   document.querySelector('.enter-item').value = '';
-// }
-
-// const enterItem = document.querySelector('.enter-item');
-
-// enterItem.addEventListener('keypress', (event) => {
-//   if (event.key === 'Enter') addItems();
-// });
-
-// const button = document.querySelector('button');
-// button.addEventListener('click', addItems);
-
-// const buttons = document.querySelectorAll('.btn');
-
-// buttons.forEach(function (button) {
-//   button.addEventListener('click', function () {
-//     this.classList.toggle('blue');
-//   });
-// });
 const enterBtn = document.querySelector('.add-btn');
 const enterInputEl = document.querySelector('.enter-input');
 const ul = document.querySelector('ul');
+let closeBtns = document.querySelectorAll('.close-btn');
+let itemsList = document.querySelectorAll('.check');
 
-function strikeOut() {
-  this.parentElement.classList.toggle('done');
-}
-function deleteItem() {
-  const li = this.parentElement;
-  li.parentNode.removeChild(li);
-}
-function strike() {
-  let itemsList = document.querySelectorAll('.check');
-  itemsList.forEach(function (item) {
-    item.addEventListener('click', strikeOut);
-  });
-}
-function remove() {
-  let closeBtns = document.querySelectorAll('.close-btn');
-  closeBtns.forEach(function (btn) {
-    btn.addEventListener('click', deleteItem);
-  });
+function strikeOut(item) {
+  item.parentElement.classList.toggle('done');
 }
 
-strike();
-remove();
+function deleteItem(btn) {
+  const li = btn.parentElement;
+  li.parentElement.removeChild(li);
+}
 
-// addEvent(list);
+function newList() {
+  itemsList = document.querySelectorAll('.check');
+  closeBtns = document.querySelectorAll('.close-btn');
+
+  itemsList.forEach((item) =>
+    item.addEventListener('click', () => {
+      strikeOut(this);
+    })
+  );
+  closeBtns.forEach((btn) =>
+    btn.addEventListener('click', () => {
+      deleteItem(this);
+    })
+  );
+}
 
 function addNewItem() {
   let item = enterInputEl.value;
@@ -90,10 +52,9 @@ function addNewItem() {
     ul.appendChild(li);
 
     enterInputEl.value = '';
-  }
 
-  strike();
-  remove();
+    newList();
+  }
 }
 
 enterBtn.addEventListener('click', addNewItem);
