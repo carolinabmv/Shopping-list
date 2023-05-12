@@ -13,51 +13,60 @@ function deleteItem(btn) {
   li.parentElement.removeChild(li);
 }
 
+itemsList.forEach((item) =>
+  item.addEventListener('click', function () {
+    strikeOut(this);
+  })
+);
+closeBtns.forEach((btn) =>
+  btn.addEventListener('click', function () {
+    deleteItem(this);
+  })
+);
+
 function newList() {
   itemsList = document.querySelectorAll('.check');
   closeBtns = document.querySelectorAll('.close-btn');
-
-  itemsList.forEach((item) =>
-    item.addEventListener('click', function () {
-      strikeOut(this);
-    })
-  );
-  closeBtns.forEach((btn) =>
-    btn.addEventListener('click', function () {
-      deleteItem(this);
-    })
-  );
+  const lastItemPosition = itemsList.length - 1;
+  const lastItem = itemsList[lastItemPosition];
+  const lastCloseBtn = closeBtns[lastItemPosition];
+  lastItem.addEventListener('click', function () {
+    strikeOut(this);
+  });
+  lastCloseBtn.addEventListener('click', function () {
+    deleteItem(this);
+  });
 }
 
-function addNewItem() {
+const addNewItem = () => {
   let item = enterInputEl.value;
-  if (item) {
-    item = item.replace(item[0], item[0].toUpperCase());
 
-    const checkInput = document.createElement('input');
-    checkInput.setAttribute('type', 'checkbox');
-    checkInput.setAttribute('class', 'check');
+  item = item.replace(item[0], item[0].toUpperCase());
 
-    const closeIcon = document.createElement('i');
-    closeIcon.setAttribute('class', 'fa-solid fa-xmark fa-xs');
-    const close = document.createElement('a');
-    close.setAttribute('href', '#');
-    close.setAttribute('class', 'close-btn');
-    close.appendChild(closeIcon);
+  const checkInput = document.createElement('input');
+  checkInput.setAttribute('type', 'checkbox');
+  checkInput.setAttribute('class', 'check');
 
-    const li = document.createElement('li');
-    li.appendChild(checkInput);
-    li.appendChild(document.createTextNode(` ${item}`));
-    li.appendChild(close);
-    ul.appendChild(li);
+  const closeIcon = document.createElement('i');
+  closeIcon.setAttribute('class', 'fa-solid fa-xmark fa-xs');
+  const close = document.createElement('a');
+  close.setAttribute('href', '#');
+  close.setAttribute('class', 'close-btn');
+  close.appendChild(closeIcon);
 
-    enterInputEl.value = '';
+  const li = document.createElement('li');
+  li.appendChild(checkInput);
+  li.appendChild(document.createTextNode(` ${item}`));
+  li.appendChild(close);
+  ul.appendChild(li);
 
-    newList();
-  }
-}
+  enterInputEl.value = '';
+  newList();
+};
 
-enterBtn.addEventListener('click', addNewItem);
+enterBtn.addEventListener('click', () => {
+  if (enterInputEl.value !== '') addNewItem();
+});
 
 enterInputEl.addEventListener('keypress', (event) => {
   if (event.key === 'Enter') addNewItem();
